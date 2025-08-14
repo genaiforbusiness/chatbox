@@ -26,5 +26,21 @@
     },
     "forwardPorts": [
         8501, 8000
-    ]
+    ],
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "github.copilot",
+                "github.copilot-chat",
+                "ms-vsliveshare.vsliveshare",
+                "oderwat.indent-rainbow",
+                "visualstudioexptteam.vscodeintellicode",
+                "redhat.vscode-yaml",
+                "google.gemini-cli-vscode-ide-companion",
+                "charliermarsh.ruff"
+            ]
+        }
+    }
 }
