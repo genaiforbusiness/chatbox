@@ -4,5 +4,3 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 ARG EXTRA_NODE_VERSION=22
 RUN su vscode -c "source /usr/local/share/nvm/nvm.sh && nvm install ${EXTRA_NODE_VERSION} && npm install -g @google/gemini-cli" 2>&1 
-
-ENV PATH="/root/.local/bin/:$PATH"
