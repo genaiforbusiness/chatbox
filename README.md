@@ -60,10 +60,6 @@ uv run -- streamlit run app.py --server.enableCORS false --server.enableXsrfProt
 > [!CAUTION]
 >  The flags `--server.enableCORS false` and `--server.enableXsrfProtection false` are used to disable two security features in the Streamlit server. This is sometimes necessary to ensure the application runs correctly within the GitHub Codespaces environment. While this is safe to do in a development environment like Codespaces, you would typically not disable these features in a production application."
 
-## Course Structure
-
-You will use this repository throughout the course as a sandbox. 
-
 ## Questions
 
 If you have any questions, please reach out to your instructor.
