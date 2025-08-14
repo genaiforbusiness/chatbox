@@ -42,7 +42,7 @@ This will start the Gemini CLI in interactive mode. You can then type your promp
 
 ### Terminal
 
-You can open a new terminal in your Codespace by going to the "Terminal" menu and selecting "New Terminal" or pressing `CTRL` + `SHIFT` + `.
+You can open a new terminal in your Codespace by going to the "Terminal" menu and selecting "New Terminal" or pressing `CTRL` + `SHIFT` + `C`.
 
 ### Running the Example App
 
