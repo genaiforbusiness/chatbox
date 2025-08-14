@@ -1,5 +1,5 @@
 import streamlit as st
-import google.generativeai as genai
+import google.genai as genai
 import os
 
 # Configure the Gemini API
@@ -20,6 +20,8 @@ def load_client() -> genai.Client:
     
 client = load_client()
 
+MODEL_ID = "gemini-2.0-flash-001" 
+
 st.title("My First GenAI App")
 
 # Text input
@@ -29,8 +31,7 @@ prompt = st.text_input("Enter a prompt:")
 if st.button("Generate"): 
     if prompt:
         try:
-            model = genai.GenerativeModel('gemini-pro')
-            response = model.generate_content(prompt)
+            response = client.models.generate_content(model=MODEL_ID, contents=prompt)
             st.write(response.text)
         except Exception as e:
             st.error(f"An error occurred: {e}")
