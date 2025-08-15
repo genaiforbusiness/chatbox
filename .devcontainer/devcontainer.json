@@ -39,7 +39,8 @@
                 "visualstudioexptteam.vscodeintellicode",
                 "redhat.vscode-yaml",
                 "google.gemini-cli-vscode-ide-companion",
-                "charliermarsh.ruff"
+                "charliermarsh.ruff",
+                "ms-azuretools.vscode-containers"
             ]
         }
     }
