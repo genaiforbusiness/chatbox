@@ -33,15 +33,19 @@ To make the key automatically available in your development environment, save it
 *(Optional: If you are using Vertex AI/GCP resources, repeat the steps to save your `GOOGLE_API_KEY`.)*
 
 > [!IMPORTANT]
-> **API Key Setup is Mandatory:**
-> If you are developing locally instead of in GitHub Codespaces, create a `.env` file in the root of your project directory and add your key:
-> ```bash
-> GEMINI_API_KEY="your_actual_api_key_here"
-> ```
-> For more details, consult the GitHub documentation: [Managing your account-specific secrets for GitHub Codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces).
+> **API Key is Only for Streamlit:**
+> The `GEMINI_API_KEY` is **only** required to run the Streamlit web application (`app.py`).
+> The Antigravity CLI (`agy`) **does not** require an API key; it authenticates directly using your Google account (via OAuth/OIDC).
+>
+> **Configuring the Key for Streamlit:**
+> - **In Codespaces:** Save `GEMINI_API_KEY` as a Codespaces secret in your GitHub account settings and grant repository access (see [GitHub Codespaces Secrets Documentation](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces)).
+> - **In Local Development:** Create a `.env` file in the root of your project directory and add:
+>   ```bash
+>   GEMINI_API_KEY="your_actual_api_key_here"
+>   ```
 
 > [!WARNING]
-> **Keep Keys Secret:** Never commit API keys or secret configuration files directly to GitHub. The `.gitignore` file is pre-configured to ignore `.env` files.
+> **Never Commit Keys:** Do not commit API keys or `.env` files to GitHub. The `.gitignore` file is pre-configured to ignore `.env` files.
 
 ### Step 4: Launch Your Codespace
 1. Navigate to your newly created private repository on GitHub.
@@ -67,11 +71,16 @@ uv run -- streamlit run app.py --server.enableCORS false --server.enableXsrfProt
 > The flags `--server.enableCORS false` and `--server.enableXsrfProtection false` disable specific cross-origin and request verification checks. This is required for Streamlit to render securely inside the GitHub Codespaces proxy. **Do not use these flags in a production environment.**
 
 ### 2. Launch the Antigravity CLI (`agy`)
-The **Antigravity CLI** is an interactive AI-powered agent running in your terminal that helps you code, refactor, and manage your project. To start it, open a terminal and run:
-```bash
-agy
-```
-*(The first run will prompt you to authenticate with Google. Follow the terminal instructions.)*
+> The **Antigravity CLI** is an interactive AI-powered agent running in your terminal that helps you code, refactor, and manage your project. 
+> 
+> > [!NOTE]
+> > The `agy` tool authenticates via your Google account using OAuth. It **does not** use your `GEMINI_API_KEY` secret.
+> 
+> To start the CLI, run:
+> ```bash
+> agy
+> ```
+> On your first run, a URL and a code will be displayed in the terminal. Open the link, sign in with your Google account, and enter the code to authorize the CLI.
 
 ---
 

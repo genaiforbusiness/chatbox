@@ -72,7 +72,7 @@ An API key is a secret password that allows your application to communicate with
 Now, we will securely store your key in your project's primary development environment.
 
 1.  **Understand Secrets:** First, read the official GitHub documentation on [managing secrets for your Codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-encrypted-secrets-for-your-codespaces).
-2.  **Store the Secret:** In your team's GitHub repository, navigate to **Settings \> Secrets and variables \> Codespaces**. Create a **new repository secret** with the name `GOOGLE_API_KEY` and paste your API key as the value.
+2.  **Store the Secret:** In your team's GitHub repository, navigate to **Settings \> Secrets and variables \> Codespaces**. Create a **new repository secret** with the name `GEMINI_API_KEY` and paste your API key as the value.
 3.  **Launch and Test:**
       * Create a new Codespace on your `main` branch.
       * Once the environment is running, **follow the instructions in the `README.md` file** to run a test script. This will confirm that your Codespace can securely access the API key and communicate with the Gemini API.
