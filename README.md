@@ -1,65 +1,136 @@
 # GenAI for Business - Course Sandbox
 
-Welcome to the sandbox repository for the "Technical Foundations of Generative AI for Business" course. This repository provides a ready-to-use development environment in GitHub Codespaces, so you can start learning and experimenting with generative AI without worrying about local setup.
+Welcome to the sandbox repository for **BUSBIS 1530: Technical Foundations of Generative AI for Business**. This repository provides a pre-configured development environment inside **GitHub Codespaces** to let you start building, testing, and collaborating with Generative AI immediately.
 
-## Getting Started
+---
 
-To get started, you need to create your own repository from this template.
+## 🚀 Getting Started Sequence
 
-1.  **Create a new repository:** Click the "Use this template" button at the top of this page and select "Create a new repository."
-2.  **Name your repository:** Give your new repository a name, for example, `genai-business-course`.
-3.  **Launch the Codespace:** Once your repository is created, click the "<> Code" button, select the "Codespaces" tab, and click "Create codespace on main." This will launch a new development environment in your browser.
+Follow these steps to set up your environment:
 
-## Using the Codespace
+### Step 1: Obtain a Gemini API Key
+1. Go to [Google AI Studio](https://aistudio.google.com/).
+2. Create or log in with your Google account.
+3. Click **Get API Key** and generate a new key. Copy this key somewhere secure.
 
-Your Codespace comes with all the tools you need for this course:
+### Step 2: Create Your Private Repository
+1. Navigate to the course template: [https://github.com/genaiforbusiness/chatbox](https://github.com/genaiforbusiness/chatbox).
+2. Click **Use this template** > **Create a new repository**.
+3. Set your repository name to `ai-poc-team-<your-team-name>` (e.g. `ai-poc-team-innovators`).
+4. **Select "Private"** (this is critical for academic integrity).
+5. Click **Create repository**.
+6. Under **Settings** > **Collaborators**, add your teammates and the instructor (`midhubalan`).
 
-*   **Python 3.13**
-*   **uv:** A fast Python package installer and resolver.
-*   **Gemini CLI:** A command-line interface for the Gemini API.
-*   **Pre-configured secrets:** The Codespace is configured to use your `GEMINI_API_KEY` and `GOOGLE_API_KEY` secrets. You will need to add these to your GitHub account. See this documentation page: [Managing your account-specific secrets for GitHub Codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces)
+### Step 3: Save the API Key in GitHub Secrets
+To make the key automatically available in your development environment, save it as a Codespaces secret:
+1. Go to your personal GitHub settings (click your profile photo in the top right > **Settings**).
+2. In the left sidebar, click **Codespaces** (under the *Developer* section).
+3. Under **Codespaces secrets**, click **New secret**.
+4. Set the **Name** to `GEMINI_API_KEY`.
+5. Paste your API key in the **Value** box.
+6. Under **Repository access**, grant access to your new private team repository.
+7. Click **Add secret**.
+*(Optional: If you are using Vertex AI/GCP resources, repeat the steps to save your `GOOGLE_API_KEY`.)*
+
+> [!IMPORTANT]
+> **API Key Setup is Mandatory:**
+> If you are developing locally instead of in GitHub Codespaces, create a `.env` file in the root of your project directory and add your key:
+> ```bash
+> GEMINI_API_KEY="your_actual_api_key_here"
+> ```
+> For more details, consult the GitHub documentation: [Managing your account-specific secrets for GitHub Codespaces](https://docs.github.com/en/codespaces/managing-your-codespaces/managing-your-account-specific-secrets-for-github-codespaces).
 
 > [!WARNING]
-> Handle API keys with extreme caution. DO NOT COMMIT API KEYS TO GITHUB ALONG WITH YOUR CODE. 
+> **Keep Keys Secret:** Never commit API keys or secret configuration files directly to GitHub. The `.gitignore` file is pre-configured to ignore `.env` files.
 
-### Gemini CLI
+### Step 4: Launch Your Codespace
+1. Navigate to your newly created private repository on GitHub.
+2. Click the green **Code** button.
+3. Select the **Codespaces** tab and click **Create codespace on main**.
+4. The Codespace environment will build and load directly in your web browser.
 
-The Gemini CLI is a powerful tool for interacting with the Gemini API from the command line. To use it, you need to make sure that the `GEMINI_API_KEY` environment variable is set in your Codespace secrets.
+---
 
-Before using the Gemini CLI, make sure you are in the project directory:
+## 🛠️ Running the Application & CLI
 
+### 1. Launch the Streamlit App
+This repository includes a starter Streamlit web application. Open a terminal in Codespaces (`Terminal` > `New Terminal`) and run:
 ```bash
-cd /workspaces/chatbox
-```
-
-To start the Gemini CLI, you can simply run the following command:
-
-```bash
-gemini
-```
-
-This will start the Gemini CLI in interactive mode. You can then type your prompts directly into the terminal. To exit, press `Ctrl+C` twice.
-
-### Terminal
-
-You can open a new terminal in your Codespace by going to the "Terminal" menu and selecting "New Terminal" or pressing `CTRL` + `SHIFT` + `C`.
-
-### Running the Example App
-
-This repository includes a simple Streamlit application in `app.py`. To run it for the first time, open a terminal and enter the following command:
-
-```bash
-# Make sure you're in the project root directory
-cd /workspaces/chatbox
-# Create virtual environment and install dependencies
+# Install dependencies & create virtual environment
 uv sync
-# Run the app
+
+# Run the Streamlit web server
 uv run -- streamlit run app.py --server.enableCORS false --server.enableXsrfProtection false
 ```
 
 > [!CAUTION]
->  The flags `--server.enableCORS false` and `--server.enableXsrfProtection false` are used to disable two security features in the Streamlit server. This is sometimes necessary to ensure the application runs correctly within the GitHub Codespaces environment. While this is safe to do in a development environment like Codespaces, you would typically not disable these features in a production application."
+> The flags `--server.enableCORS false` and `--server.enableXsrfProtection false` disable specific cross-origin and request verification checks. This is required for Streamlit to render securely inside the GitHub Codespaces proxy. **Do not use these flags in a production environment.**
 
-## Questions
+### 2. Launch the Antigravity CLI (`agy`)
+The **Antigravity CLI** is an interactive AI-powered agent running in your terminal that helps you code, refactor, and manage your project. To start it, open a terminal and run:
+```bash
+agy
+```
+*(The first run will prompt you to authenticate with Google. Follow the terminal instructions.)*
 
-If you have any questions, please reach out to your instructor.
+---
+
+## 🧠 Workspace Skills
+
+This repository is pre-loaded with **workspace skills** located in `.agents/skills/`. When you run `agy` in your workspace, the agent automatically detects these skills and uses them to assist you. 
+
+| Skill Command | Skill Name | Description / Guidance |
+| :--- | :--- | :--- |
+| `/project-advisor` | **Course Advisor** | Onboards you to the workspace, explains deliverables, and maps out next steps. |
+| `/project-bootstrap` | **Bootstrap Guide** | Step-by-step git commands and instructions for initial repository setup. |
+| `/project-charter` | **Project Charter Guide** | Requirements for `README.md`, `USER_STORIES.md`, and `GOVERNANCE.md`. |
+| `/project-mvp` | **MVP Deliverable** | Requirements for your MVP code, retrospective, and collaboration log. |
+| `/project-refactor` | **Refactoring Guide** | Instructions for git branching, experiment logging, and advanced features. |
+| `/project-launch-kit` | **PoC Launch Kit** | Outline for the video pitch, quick-start guide, and final team reflection. |
+| `/project-individual-contribution` | **Individual Contribution** | Guidelines on task management, git workflow, and peer collaboration. |
+| `/project-peer-review` | **Peer Review Guide** | Rubrics and templates for reviewing other teams' launch kits. |
+| `/role-engineer` | **Software Engineer** | Architecture guidelines, type safety, Streamlit cache optimization. |
+| `/role-product-manager`| **Product Manager** | Framing value, writing user stories, prompt configuration (temp, top-P). |
+| `/role-project-manager`| **Scrum Lead** | Task decomposition, Definition of Done, commit hygiene. |
+| `/phase-mvp` | **MVP Phase** | Guidance to avoid feature creep and maintain clean prototype simplicity. |
+| `/phase-refactor` | **Refactoring Phase** | Focuses on context caching, structured schemas, and performance tuning. |
+
+---
+
+## 🏁 Next Steps
+
+To begin your project:
+1. Open a new terminal in your Codespace.
+2. Start the CLI by running `agy`.
+3. Type `/project-advisor` or ask the assistant:
+   > *"I'm just starting the project. What should my team do first?"*
+4. The assistant will load the `project-advisor` and `project-bootstrap` skills to guide your setup!
+
+---
+
+## 💬 Sample Agent Interaction
+
+Here is an example of what to expect when interacting with the Antigravity agent using workspace skills:
+
+**Student Prompt:**
+> "I'm assuming the role of Product Manager for this sprint. Can you help me draft a user story for our chatbot's user authentication?"
+
+**Antigravity Response (utilizing `/role-product-manager`):**
+> 📥 *Loaded skill: role-product-manager*
+>
+> As a Product Manager, I'd be glad to help you draft this user story. Let's frame this from the perspective of our target user to ensure we capture the value clearly, without getting bogged down in the database schemas or coding details (which our Tech Lead will handle).
+> 
+> Let's structure this using our standard PM format:
+> 
+> **Epic:** User Account Management
+> **User Story:**
+> > **As a** return user of the AI application,
+> > **I want to** securely log in using my Google account,
+> > **so that** I can retrieve my saved chat history and preferences.
+> 
+> **Acceptance Criteria (for our Technical Lead):**
+> 1. User can click a "Sign in with Google" button on the sidebar.
+> 2. On successful login, the UI greets the user by name.
+> 3. If authentication fails, a clear error message is shown without revealing sensitive system details.
+> 
+> **Next Step Recommendation:** Let's discuss what parameters we should set for this authentication flow (e.g. timeout settings) to keep cost and risk low, in line with the **AI PM Triangle**. Would you like me to help you draft the GitHub issue for this?

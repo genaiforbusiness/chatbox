@@ -10,7 +10,7 @@
         },
         "GOOGLE_API_KEY": {
             "description": "Google Cloud Platform API Key for Vertex AI",
-            "documentationUrl": "https://github.com/google-gemini/gemini-cli/blob/main/docs/cli/authentication.md"
+            "documentationUrl": "https://antigravity.google"
         }
     },
     "portsAttributes": {
@@ -38,7 +38,6 @@
                 "oderwat.indent-rainbow",
                 "visualstudioexptteam.vscodeintellicode",
                 "redhat.vscode-yaml",
-                "google.gemini-cli-vscode-ide-companion",
                 "charliermarsh.ruff",
                 "ms-azuretools.vscode-containers"
             ]
